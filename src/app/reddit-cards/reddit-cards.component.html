@@ -1,0 +1,16 @@
+<main>
+    <section aria-label="Reddit Cards">
+        <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+        <article *ngFor="let card of resp | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+            <header>{{card.data.title}}
+                <p class="score"><svg alt="up arrow icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" height="20" width="20">
+                    <path
+                        d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+                </svg>{{card.data.score}}</p></header>
+            <!--<p>{{card.data.selftext_html}}</p>-->
+            <p [ngClass]="card.data.selftext_html !== null ? 'data' : 'no_data'" [innerHTML]="card.data.selftext_html">
+            </p>
+            <a href={{card.data.url}} target="_blank" alt="this is a link">{{card.data.url}}</a>
+        </article>
+    </section>
+</main>
